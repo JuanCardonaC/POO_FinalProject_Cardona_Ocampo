@@ -35,5 +35,5 @@ _Por definir._
 _Por definir._
 
 ## Diagrama de clases
-
-_Por definir._
+link diagrama de clases 
+](https://claude.ai/artifact/R5vmwMhHX6HGTj6Zib6k6U)
