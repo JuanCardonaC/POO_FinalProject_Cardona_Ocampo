@@ -1,0 +1,15 @@
+# Compiled classes
+*.class
+bin/
+out/
+
+# Runtime data files (serialized state and CSV exports)
+*.ser
+*.dat
+exports/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
