@@ -35,5 +35,5 @@ _Por definir._
 _Por definir._
 
 ## Diagrama de clases
-link diagrama de clases 
-](https://claude.ai/artifact/R5vmwMhHX6HGTj6Zib6k6U)
+El diagrama de clases se realizo en lenguaje javascript en la herramienta mermaid
+[link diagrama de clases](https://mermaid.ai/d/cd78483c-32b4-4296-9536-853794799c7c)
