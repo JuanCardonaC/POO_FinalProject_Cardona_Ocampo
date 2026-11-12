@@ -7,7 +7,7 @@ Proyecto Final — Programación Orientada a Objetos (Universidad de Caldas)
 | Nombre | Código | GitHub |
 |---|---|---|
 | Juan Cardona | _por definir_ | [@JuanCardonaC](https://github.com/JuanCardonaC) |
-| _por definir_ | _por definir_ | _por definir_ |
+| _por definir_ | _por definir_ | [_por definir_](_por definir_) |
 
 ## Descripción general
 
