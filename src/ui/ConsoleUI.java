@@ -17,9 +17,7 @@ public class ConsoleUI {
         this.scanner = new Scanner(System.in);
     }
 
-    // ══════════════════════════════════════════════════════
-    //  START
-    // ══════════════════════════════════════════════════════
+    // START
 
     public void start() {
         printHeader();
@@ -39,13 +37,27 @@ public class ConsoleUI {
             int option = readInt("  Seleccione una opción: ");
             System.out.println();
             switch (option) {
-                case 1: menuCategories(); break;
-                case 2: menuMovies(); break;
-                case 3: menuCustomers(); break;
-                case 4: menuEmployees(); break;
-                case 5: menuRentals(); break;
-                case 6: menuReports(); break;
-                case 7: menuRecommendations(); break;
+                case 1:
+                    menuCategories();
+                    break;
+                case 2:
+                    menuMovies();
+                    break;
+                case 3:
+                    menuCustomers();
+                    break;
+                case 4:
+                    menuEmployees();
+                    break;
+                case 5:
+                    menuRentals();
+                    break;
+                case 6:
+                    menuReports();
+                    break;
+                case 7:
+                    menuRecommendations();
+                    break;
                 case 0:
                     DataStore.save(store);
                     System.out.println("\n  ¡Hasta luego, " + currentEmployee.getFullName() + "!");
@@ -58,13 +70,12 @@ public class ConsoleUI {
         scanner.close();
     }
 
-    // ══════════════════════════════════════════════════════
-    //  HEADER & MAIN MENU
-    // ══════════════════════════════════════════════════════
+    // HEADER & MAIN MENU
 
     private void printHeader() {
+        System.out.println("\n");
         System.out.println("╔══════════════════════════════════════════════╗");
-        System.out.println("║      MOVIE RENTAL MANAGEMENT SYSTEM         ║");
+        System.out.println("║      MOVIE RENTAL MANAGEMENT SYSTEM          ║");
         System.out.println("║      Sistema de Alquiler de Películas        ║");
         System.out.println("╚══════════════════════════════════════════════╝");
         System.out.println();
@@ -83,9 +94,7 @@ public class ConsoleUI {
         System.out.println("══════════════════════════════════════");
     }
 
-    // ══════════════════════════════════════════════════════
-    //  LOGIN
-    // ══════════════════════════════════════════════════════
+    // LOGIN
 
     private void login() {
         System.out.println("── Inicio de Sesión (Empleado) ──");
@@ -93,20 +102,18 @@ public class ConsoleUI {
             String empId = readLine("  ID del empleado: ");
             Employee emp = store.findEmployeeById(empId);
             if (emp == null) {
-                System.out.println("  ⚠ Empleado no encontrado.");
+                System.out.println("   Empleado no encontrado.");
             } else if (!emp.isActive()) {
-                System.out.println("  ⚠ El empleado está inactivo.");
+                System.out.println("   El empleado está inactivo.");
             } else {
                 currentEmployee = emp;
-                System.out.println("  ✓ Bienvenido/a, " + emp.getFullName()
+                System.out.println("\n   Bienvenido/a, " + emp.getFullName()
                         + " (" + emp.getPosition() + ")\n");
             }
         }
     }
 
-    // ══════════════════════════════════════════════════════
-    //  1. CATEGORIES
-    // ══════════════════════════════════════════════════════
+    // 1. CATEGORIES
 
     private void menuCategories() {
         boolean back = false;
@@ -120,12 +127,23 @@ public class ConsoleUI {
             int opt = readInt("  Opción: ");
             System.out.println();
             switch (opt) {
-                case 1: listCategories(); break;
-                case 2: addCategory(); break;
-                case 3: editCategory(); break;
-                case 4: removeCategory(); break;
-                case 0: back = true; break;
-                default: System.out.println("  ⚠ Opción no válida.");
+                case 1:
+                    listCategories();
+                    break;
+                case 2:
+                    addCategory();
+                    break;
+                case 3:
+                    editCategory();
+                    break;
+                case 4:
+                    removeCategory();
+                    break;
+                case 0:
+                    back = true;
+                    break;
+                default:
+                    System.out.println("  ⚠ Opción no válida.");
             }
         }
     }
@@ -136,14 +154,14 @@ public class ConsoleUI {
             System.out.println("  No hay categorías registradas.");
             return;
         }
-        System.out.println("  ┌─────────────────────────────────────────┐");
+        System.out.println("  ┌───────────────────────────────────────────────┐");
         System.out.printf("  │ %-6s │ %-15s │ %-15s │%n", "ID", "Nombre", "Descripción");
-        System.out.println("  ├─────────────────────────────────────────┤");
+        System.out.println("  ├───────────────────────────────────────────────┤");
         for (Category c : cats) {
             System.out.printf("  │ %-6s │ %-15s │ %-15s │%n",
                     c.getId(), c.getName(), c.getDescription());
         }
-        System.out.println("  └─────────────────────────────────────────┘");
+        System.out.println("  └───────────────────────────────────────────────┘");
     }
 
     private void addCategory() {
@@ -168,8 +186,10 @@ public class ConsoleUI {
         System.out.println("  Actual: " + cat.getName() + " - " + cat.getDescription());
         String name = readLine("  Nuevo nombre (Enter para mantener): ");
         String desc = readLine("  Nueva descripción (Enter para mantener): ");
-        if (!name.isEmpty()) cat.setName(name);
-        if (!desc.isEmpty()) cat.setDescription(desc);
+        if (!name.isEmpty())
+            cat.setName(name);
+        if (!desc.isEmpty())
+            cat.setDescription(desc);
         System.out.println("  ✓ Categoría actualizada.");
     }
 
@@ -183,9 +203,7 @@ public class ConsoleUI {
         }
     }
 
-    // ══════════════════════════════════════════════════════
-    //  2. MOVIES
-    // ══════════════════════════════════════════════════════
+    // 2. MOVIES
 
     private void menuMovies() {
         boolean back = false;
@@ -202,15 +220,32 @@ public class ConsoleUI {
             int opt = readInt("  Opción: ");
             System.out.println();
             switch (opt) {
-                case 1: listMovies(); break;
-                case 2: registerMovie(); break;
-                case 3: addCopyToMovie(); break;
-                case 4: viewMovieCopies(); break;
-                case 5: moviesByCategory(); break;
-                case 6: deactivateMovie(); break;
-                case 7: manageCopyStatus(); break;
-                case 0: back = true; break;
-                default: System.out.println("  ⚠ Opción no válida.");
+                case 1:
+                    listMovies();
+                    break;
+                case 2:
+                    registerMovie();
+                    break;
+                case 3:
+                    addCopyToMovie();
+                    break;
+                case 4:
+                    viewMovieCopies();
+                    break;
+                case 5:
+                    moviesByCategory();
+                    break;
+                case 6:
+                    deactivateMovie();
+                    break;
+                case 7:
+                    manageCopyStatus();
+                    break;
+                case 0:
+                    back = true;
+                    break;
+                default:
+                    System.out.println("  ⚠ Opción no válida.");
             }
         }
     }
@@ -373,9 +408,7 @@ public class ConsoleUI {
         }
     }
 
-    // ══════════════════════════════════════════════════════
-    //  3. CUSTOMERS
-    // ══════════════════════════════════════════════════════
+    // 3. CUSTOMERS
 
     private void menuCustomers() {
         boolean back = false;
@@ -390,13 +423,26 @@ public class ConsoleUI {
             int opt = readInt("  Opción: ");
             System.out.println();
             switch (opt) {
-                case 1: listCustomers(); break;
-                case 2: addCustomer(); break;
-                case 3: editCustomer(); break;
-                case 4: deactivateCustomer(); break;
-                case 5: viewCustomerHistory(); break;
-                case 0: back = true; break;
-                default: System.out.println("  ⚠ Opción no válida.");
+                case 1:
+                    listCustomers();
+                    break;
+                case 2:
+                    addCustomer();
+                    break;
+                case 3:
+                    editCustomer();
+                    break;
+                case 4:
+                    deactivateCustomer();
+                    break;
+                case 5:
+                    viewCustomerHistory();
+                    break;
+                case 0:
+                    back = true;
+                    break;
+                default:
+                    System.out.println("  ⚠ Opción no válida.");
             }
         }
     }
@@ -407,10 +453,10 @@ public class ConsoleUI {
             System.out.println("  No hay clientes registrados.");
             return;
         }
-        System.out.println("  ┌──────────────────────────────────────────────────────────────┐");
+        System.out.println("  ┌────────────────────────────────────────────────────────────────────┐");
         System.out.printf("  │ %-8s │ %-20s │ %-12s │ %-8s │ %-6s │%n",
                 "ID", "Nombre", "Teléfono", "Activos", "Estado");
-        System.out.println("  ├──────────────────────────────────────────────────────────────┤");
+        System.out.println("  ├────────────────────────────────────────────────────────────────────┤");
         for (Customer c : customers) {
             System.out.printf("  │ %-8s │ %-20s │ %-12s │ %-8d │ %-6s │%n",
                     c.getId(),
@@ -419,7 +465,7 @@ public class ConsoleUI {
                     c.countActiveRentals(),
                     c.isActive() ? "Act." : "Inact.");
         }
-        System.out.println("  └──────────────────────────────────────────────────────────────┘");
+        System.out.println("  └────────────────────────────────────────────────────────────────────┘");
     }
 
     private void addCustomer() {
@@ -445,8 +491,10 @@ public class ConsoleUI {
         System.out.println("  Actual: " + c.getFullName() + " | " + c.getPhone() + " | " + c.getEmail());
         String phone = readLine("  Nuevo teléfono (Enter para mantener): ");
         String email = readLine("  Nuevo email (Enter para mantener): ");
-        if (!phone.isEmpty()) c.setPhone(phone);
-        if (!email.isEmpty()) c.setEmail(email);
+        if (!phone.isEmpty())
+            c.setPhone(phone);
+        if (!email.isEmpty())
+            c.setEmail(email);
         System.out.println("  ✓ Cliente actualizado.");
     }
 
@@ -481,9 +529,7 @@ public class ConsoleUI {
         }
     }
 
-    // ══════════════════════════════════════════════════════
-    //  4. EMPLOYEES
-    // ══════════════════════════════════════════════════════
+    // 4. EMPLOYEES
 
     private void menuEmployees() {
         boolean back = false;
@@ -497,12 +543,23 @@ public class ConsoleUI {
             int opt = readInt("  Opción: ");
             System.out.println();
             switch (opt) {
-                case 1: listEmployees(); break;
-                case 2: addEmployee(); break;
-                case 3: editEmployee(); break;
-                case 4: deactivateEmployee(); break;
-                case 0: back = true; break;
-                default: System.out.println("  ⚠ Opción no válida.");
+                case 1:
+                    listEmployees();
+                    break;
+                case 2:
+                    addEmployee();
+                    break;
+                case 3:
+                    editEmployee();
+                    break;
+                case 4:
+                    deactivateEmployee();
+                    break;
+                case 0:
+                    back = true;
+                    break;
+                default:
+                    System.out.println("  ⚠ Opción no válida.");
             }
         }
     }
@@ -545,9 +602,12 @@ public class ConsoleUI {
         String phone = readLine("  Nuevo teléfono (Enter para mantener): ");
         String email = readLine("  Nuevo email (Enter para mantener): ");
         String pos = readLine("  Nuevo cargo (Enter para mantener): ");
-        if (!phone.isEmpty()) e.setPhone(phone);
-        if (!email.isEmpty()) e.setEmail(email);
-        if (!pos.isEmpty()) e.setPosition(pos);
+        if (!phone.isEmpty())
+            e.setPhone(phone);
+        if (!email.isEmpty())
+            e.setEmail(email);
+        if (!pos.isEmpty())
+            e.setPosition(pos);
         System.out.println("  ✓ Empleado actualizado.");
     }
 
@@ -566,14 +626,13 @@ public class ConsoleUI {
         System.out.println("  ✓ Empleado desactivado.");
     }
 
-    // ══════════════════════════════════════════════════════
-    //  5. RENTALS
-    // ══════════════════════════════════════════════════════
+    // 5. RENTALS
 
     private void menuRentals() {
         boolean back = false;
         while (!back) {
-            System.out.println("\n─── Gestión de Alquileres ───");
+            System.out.println("\n");
+            System.out.println("─── Gestión de Alquileres ───");
             System.out.println("  1. Listar alquileres activos");
             System.out.println("  2. Crear alquiler");
             System.out.println("  3. Registrar devolución");
@@ -584,14 +643,29 @@ public class ConsoleUI {
             int opt = readInt("  Opción: ");
             System.out.println();
             switch (opt) {
-                case 1: listActiveRentals(); break;
-                case 2: createRental(); break;
-                case 3: returnRental(); break;
-                case 4: cancelRental(); break;
-                case 5: registerPayment(); break;
-                case 6: viewRentalDetail(); break;
-                case 0: back = true; break;
-                default: System.out.println("  ⚠ Opción no válida.");
+                case 1:
+                    listActiveRentals();
+                    break;
+                case 2:
+                    createRental();
+                    break;
+                case 3:
+                    returnRental();
+                    break;
+                case 4:
+                    cancelRental();
+                    break;
+                case 5:
+                    registerPayment();
+                    break;
+                case 6:
+                    viewRentalDetail();
+                    break;
+                case 0:
+                    back = true;
+                    break;
+                default:
+                    System.out.println("  ⚠ Opción no válida.");
             }
         }
     }
@@ -606,7 +680,7 @@ public class ConsoleUI {
         }
         System.out.println("  Alquileres activos:");
         for (Rental r : actives) {
-            String overdue = r.isOverdue(LocalDate.now()) ? " ⚠ VENCIDO" : "";
+            String overdue = r.isOverdue(LocalDate.now()) ? "  VENCIDO" : "";
             System.out.println("    " + r + overdue);
         }
     }
@@ -616,11 +690,11 @@ public class ConsoleUI {
         String custId = readLine("  ID del cliente: ");
         Customer customer = store.findCustomerById(custId);
         if (customer == null) {
-            System.out.println("  ⚠ Cliente no encontrado.");
+            System.out.println("   Cliente no encontrado.");
             return;
         }
         if (!customer.canRent()) {
-            System.out.println("  ⚠ El cliente no puede alquilar (inactivo o límite alcanzado).");
+            System.out.println("   El cliente no puede alquilar (inactivo o límite alcanzado).");
             return;
         }
 
@@ -629,14 +703,14 @@ public class ConsoleUI {
         System.out.println("  Películas disponibles:");
         List<Movie> available = store.getAvailableMovies();
         if (available.isEmpty()) {
-            System.out.println("  ⚠ No hay películas disponibles.");
+            System.out.println("   No hay películas disponibles.");
             return;
         }
         for (Movie m : available) {
             System.out.println("    " + m + " — Copias: "
                     + m.getAvailableCopies().stream()
-                    .map(MovieCopy::getCode)
-                    .collect(Collectors.joining(", ")));
+                            .map(MovieCopy::getCode)
+                            .collect(Collectors.joining(", ")));
         }
 
         System.out.println("  Ingrese los códigos de las copias (separados por coma):");
@@ -646,18 +720,18 @@ public class ConsoleUI {
             code = code.trim();
             MovieCopy copy = store.findCopyByCode(code);
             if (copy == null) {
-                System.out.println("  ⚠ Copia '" + code + "' no encontrada. Operación cancelada.");
+                System.out.println("   Copia '" + code + "' no encontrada. Operación cancelada.");
                 return;
             }
             if (!copy.isAvailable()) {
-                System.out.println("  ⚠ Copia '" + code + "' no disponible. Operación cancelada.");
+                System.out.println("   Copia '" + code + "' no disponible. Operación cancelada.");
                 return;
             }
             selectedCopies.add(copy);
         }
 
         if (selectedCopies.isEmpty()) {
-            System.out.println("  ⚠ No se seleccionaron copias.");
+            System.out.println("   No se seleccionaron copias.");
             return;
         }
 
@@ -671,7 +745,7 @@ public class ConsoleUI {
         try {
             Rental rental = store.createRental(customer, currentEmployee,
                     selectedCopies, days);
-            System.out.println("  ✓ Alquiler creado exitosamente:");
+            System.out.println("    Alquiler creado exitosamente:");
             System.out.println("    ID: " + rental.getId());
             System.out.println("    Total: $" + String.format("%.2f", rental.calculateBaseTotal()));
             System.out.println("    Fecha límite: " + rental.getDueDate());
@@ -679,7 +753,7 @@ public class ConsoleUI {
                 System.out.println("    " + item);
             }
         } catch (Exception e) {
-            System.out.println("  ⚠ " + e.getMessage());
+            System.out.println("   " + e.getMessage());
         }
     }
 
@@ -688,15 +762,15 @@ public class ConsoleUI {
         try {
             double lateFees = store.returnRental(rentalId, LocalDate.now());
             Rental rental = store.findRentalById(rentalId);
-            System.out.println("  ✓ Devolución registrada.");
+            System.out.println("    Devolución registrada.");
             System.out.println("    Total base: $" + String.format("%.2f", rental.calculateBaseTotal()));
             if (lateFees > 0) {
-                System.out.println("    ⚠ Multa por retraso (" + rental.getDaysLate(LocalDate.now())
+                System.out.println("      Multa por retraso (" + rental.getDaysLate(LocalDate.now())
                         + " días): $" + String.format("%.2f", lateFees));
             }
             System.out.println("    Saldo pendiente: $" + String.format("%.2f", rental.getBalanceDue()));
         } catch (Exception e) {
-            System.out.println("  ⚠ " + e.getMessage());
+            System.out.println("    " + e.getMessage());
         }
     }
 
@@ -705,9 +779,9 @@ public class ConsoleUI {
         String reason = readLine("  Motivo de cancelación: ");
         try {
             store.cancelRental(rentalId, reason);
-            System.out.println("  ✓ Alquiler cancelado.");
+            System.out.println("    Alquiler cancelado.");
         } catch (Exception e) {
-            System.out.println("  ⚠ " + e.getMessage());
+            System.out.println("    " + e.getMessage());
         }
     }
 
@@ -744,9 +818,15 @@ public class ConsoleUI {
         int methodOpt = readInt("  Opción: ");
         PaymentMethod method;
         switch (methodOpt) {
-            case 2: method = PaymentMethod.CARD; break;
-            case 3: method = PaymentMethod.TRANSFER; break;
-            default: method = PaymentMethod.CASH; break;
+            case 2:
+                method = PaymentMethod.CARD;
+                break;
+            case 3:
+                method = PaymentMethod.TRANSFER;
+                break;
+            default:
+                method = PaymentMethod.CASH;
+                break;
         }
 
         String paymentId = "P-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
@@ -763,13 +843,15 @@ public class ConsoleUI {
             System.out.println("  ⚠ Alquiler no encontrado.");
             return;
         }
+        System.out.println("\n");
         System.out.println("  ┌─── Detalle del Alquiler ───");
         System.out.println("  │ ID:          " + rental.getId());
         System.out.println("  │ Cliente:     " + rental.getCustomer().getFullName());
         System.out.println("  │ Empleado:    " + rental.getEmployee().getFullName());
         System.out.println("  │ Fecha:       " + rental.getRentalDate());
         System.out.println("  │ Fecha límite:" + rental.getDueDate());
-        System.out.println("  │ Devolución:  " + (rental.getReturnDate() != null ? rental.getReturnDate() : "Pendiente"));
+        System.out
+                .println("  │ Devolución:  " + (rental.getReturnDate() != null ? rental.getReturnDate() : "Pendiente"));
         System.out.println("  │ Estado:      " + rental.getStatus());
         if (rental.getCancellationReason() != null) {
             System.out.println("  │ Motivo canc.:" + rental.getCancellationReason());
@@ -802,9 +884,7 @@ public class ConsoleUI {
         System.out.println("  └──────────────────────────────");
     }
 
-    // ══════════════════════════════════════════════════════
-    //  6. REPORTS
-    // ══════════════════════════════════════════════════════
+    // 6. REPORTS
 
     private void menuReports() {
         boolean back = false;
@@ -820,23 +900,35 @@ public class ConsoleUI {
             int opt = readInt("  Opción: ");
             System.out.println();
             switch (opt) {
-                case 1: reportOverdue(); break;
-                case 2: reportIncome(); break;
-                case 3: reportSummary(); break;
+                case 1:
+                    reportOverdue();
+                    break;
+                case 2:
+                    reportIncome();
+                    break;
+                case 3:
+                    reportSummary();
+                    break;
                 case 4:
                     String f1 = CsvExporter.exportMovies(store.getMovies());
-                    if (f1 != null) System.out.println("  ✓ Exportado a: " + f1);
+                    if (f1 != null)
+                        System.out.println("  ✓ Exportado a: " + f1);
                     break;
                 case 5:
                     String f2 = CsvExporter.exportCustomers(store.getCustomers());
-                    if (f2 != null) System.out.println("  ✓ Exportado a: " + f2);
+                    if (f2 != null)
+                        System.out.println("  ✓ Exportado a: " + f2);
                     break;
                 case 6:
                     String f3 = CsvExporter.exportRentals(store.getRentals());
-                    if (f3 != null) System.out.println("  ✓ Exportado a: " + f3);
+                    if (f3 != null)
+                        System.out.println("  ✓ Exportado a: " + f3);
                     break;
-                case 0: back = true; break;
-                default: System.out.println("  ⚠ Opción no válida.");
+                case 0:
+                    back = true;
+                    break;
+                default:
+                    System.out.println("  ⚠ Opción no válida.");
             }
         }
     }
@@ -894,9 +986,7 @@ public class ConsoleUI {
         System.out.println("  └───────────────────────────");
     }
 
-    // ══════════════════════════════════════════════════════
-    //  7. RECOMMENDATIONS
-    // ══════════════════════════════════════════════════════
+    // 7. RECOMMENDATIONS
 
     private void menuRecommendations() {
         String custId = readLine("  ID del cliente: ");
@@ -916,7 +1006,7 @@ public class ConsoleUI {
         if (!rentedCats.isEmpty()) {
             System.out.println("  Categorías preferidas: "
                     + rentedCats.stream().map(Category::getName)
-                    .collect(Collectors.joining(", ")));
+                            .collect(Collectors.joining(", ")));
         }
         System.out.println("  Recomendaciones para " + c.getFullName() + ":");
         for (Movie m : recs) {
@@ -926,9 +1016,7 @@ public class ConsoleUI {
         }
     }
 
-    // ══════════════════════════════════════════════════════
-    //  DEFAULT DATA
-    // ══════════════════════════════════════════════════════
+    // DEFAULT DATA
 
     private void initializeDefaultData() {
         // Categories
@@ -981,9 +1069,7 @@ public class ConsoleUI {
         store.registerCustomer(new Customer("CLI03", "Carlos Ruiz", "3157778899", "carlos@email.com"));
     }
 
-    // ══════════════════════════════════════════════════════
-    //  INPUT HELPERS
-    // ══════════════════════════════════════════════════════
+    // INPUT HELPERS
 
     private String readLine(String prompt) {
         System.out.print(prompt);
@@ -1013,7 +1099,8 @@ public class ConsoleUI {
     }
 
     private String truncate(String text, int maxLen) {
-        if (text.length() <= maxLen) return text;
+        if (text.length() <= maxLen)
+            return text;
         return text.substring(0, maxLen - 2) + "..";
     }
 }

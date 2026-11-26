@@ -50,7 +50,7 @@ public abstract class Movie implements Serializable {
         this.category = category;
     }
 
-    // ── Getters ──────────────────────────────────────────
+    // Getters
     public String getId() {
         return id;
     }
@@ -79,7 +79,7 @@ public abstract class Movie implements Serializable {
         return copies;
     }
 
-    // ── Abstract methods ─────────────────────────────────
+    // Abstract methods
     public abstract double calculateRentalPrice(int days);
 
     public abstract double calculateLateFee(int daysLate);

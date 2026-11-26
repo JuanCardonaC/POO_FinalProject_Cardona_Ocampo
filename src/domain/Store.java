@@ -26,9 +26,7 @@ public class Store implements Serializable {
         this.rentals = new ArrayList<>();
     }
 
-    // ══════════════════════════════════════════════════════
-    //  CATEGORY MANAGEMENT
-    // ══════════════════════════════════════════════════════
+    // CATEGORY MANAGEMENT
 
     public void addCategory(Category category) {
         categories.add(category);
@@ -51,9 +49,7 @@ public class Store implements Serializable {
                 .findFirst().orElse(null);
     }
 
-    // ══════════════════════════════════════════════════════
-    //  MOVIE MANAGEMENT
-    // ══════════════════════════════════════════════════════
+    // MOVIE MANAGEMENT
 
     public void registerMovie(Movie movie) {
         movies.add(movie);
@@ -101,9 +97,7 @@ public class Store implements Serializable {
                 .findFirst().orElse(null);
     }
 
-    // ══════════════════════════════════════════════════════
-    //  CUSTOMER MANAGEMENT
-    // ══════════════════════════════════════════════════════
+    // CUSTOMER MANAGEMENT
 
     public void registerCustomer(Customer customer) {
         customers.add(customer);
@@ -127,9 +121,7 @@ public class Store implements Serializable {
         customer.deactivate();
     }
 
-    // ══════════════════════════════════════════════════════
-    //  EMPLOYEE MANAGEMENT
-    // ══════════════════════════════════════════════════════
+    // EMPLOYEE MANAGEMENT
 
     public void registerEmployee(Employee employee) {
         employees.add(employee);
@@ -141,12 +133,10 @@ public class Store implements Serializable {
                 .findFirst().orElse(null);
     }
 
-    // ══════════════════════════════════════════════════════
-    //  RENTAL MANAGEMENT
-    // ══════════════════════════════════════════════════════
+    // RENTAL MANAGEMENT
 
     public Rental createRental(Customer c, Employee e,
-                               List<MovieCopy> copies, int days) {
+            List<MovieCopy> copies, int days) {
         if (!c.canRent()) {
             throw new IllegalStateException(
                     "El cliente no puede alquilar (inactivo o límite de "
@@ -227,9 +217,7 @@ public class Store implements Serializable {
                 .sum();
     }
 
-    // ══════════════════════════════════════════════════════
-    //  RECOMMENDATIONS
-    // ══════════════════════════════════════════════════════
+    // RECOMMENDATIONS
 
     public List<Movie> getRecommendations(Customer customer) {
         List<Category> rentedCategories = customer.getRentedCategories();
@@ -249,7 +237,8 @@ public class Store implements Serializable {
                     .filter(m -> rentedCategories.stream()
                             .anyMatch(cat -> cat.getId().equals(m.getCategory().getId())))
                     .collect(Collectors.toList());
-            if (!recs.isEmpty()) return recs;
+            if (!recs.isEmpty())
+                return recs;
         }
 
         // Fallback: recommend all available movies not yet rented
@@ -259,7 +248,7 @@ public class Store implements Serializable {
                 .collect(Collectors.toList());
     }
 
-    // ── Getters ──────────────────────────────────────────
+    // Getters
     public String getName() {
         return name;
     }
