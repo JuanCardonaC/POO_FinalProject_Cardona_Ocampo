@@ -64,7 +64,7 @@ java -cp out Main
 
 ```
 ╔══════════════════════════════════════════════╗
-║      MOVIE RENTAL MANAGEMENT SYSTEM         ║
+║      MOVIE RENTAL MANAGEMENT SYSTEM          ║
 ║      Sistema de Alquiler de Películas        ║
 ╚══════════════════════════════════════════════╝
 
